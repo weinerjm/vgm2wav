@@ -1,5 +1,4 @@
 # vgm2wav
-## Description
 vgm2wav is a simple command-line interface for essential funcitonality of blargg's [game-music-emu](https://bitbucket.org/mpyne/game-music-emu/wiki/Home) library. It builds off of the demo code that is included in game-music-emu.
 
 vgm2wav is able to export video game music files (e.g., NES NSF or Super Nintendo SPC) to uncompressed WAV format. The output can be to either a file or a stream (`stdout`).
