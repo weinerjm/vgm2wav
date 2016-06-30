@@ -46,10 +46,10 @@ git clone https://github.com/weinerjm/vgm2wav.git
 then `cd vgm2wav`. When you are in the vgm2wav directory, run `cmake src/` and finally `make`.
 `make clean` should remove the build files.
 
-This build has only been tested on Mac OS X 10.11 with CMake 3.5.2 and gcc 5.3.0.
+This build has only been tested on Mac OS X 10.11 with CMake 3.5.2 and gcc 5.3.0. Also, only a few NSF and SPC format files have been tested.
 
 ## Usage
-vgm2wav supports several options.
+vgm2wav supports several options for file input/output and selecting voices from the source sound file.
 ### Basic Input/Output
 vgm2wav supports specifying input and output files with the `-i` and `-o` options:
 ```
