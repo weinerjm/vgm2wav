@@ -5,6 +5,21 @@ vgm2wav is able to export video game music files (e.g., NES NSF or Super Nintend
 
 vgm2wav also can separate a track into individual voices.
 
+## Example
+Convert the packaged `test.nsf` to a 10-second long WAV file:
+```shell
+./vgm2wav -i test.nsf -o out.wav -t 10
+```
+Isolate the melody:
+```shell
+./vgm2wav -i test.nsf -s 0 -o melody.wav -t 10
+```
+Convert the melody to MIDI using [WaoN](http://waon.sourceforge.net/) or to MP3 using [LAME](http://lame.sourceforge.net/) without intermediate files:
+```shell
+./vgm2wav -i test.nsf -s 0 -t 10 -o - | waon -o melody.mid
+./vgm2wav -i test.nsf -s 0 -t 10 -o - | lame --preset standard - melody.mp3
+```
+
 ## Purpose
 I could not find a suitable simple command-line interface for exporting NSF and SPC files to WAV. Most of the programs out there are Windows-only or GUI programs that are currently under development. Importantly, vgm2wav can output data to `stdout` which enables the easy batch conversion of music files.
 
