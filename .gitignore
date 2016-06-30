@@ -5,4 +5,10 @@ Makefile
 cmake_install.cmake
 # binaries
 vgm2wav
-
+# temp files
+*.swp
+gme/*.swp
+# test audio files
+*.wav
+*.mp3
+*.mid

@@ -26,9 +26,10 @@ int main(int argc, char** argv)
     int sel_voice;
     int sflag = 0;
     int oflag = 0;
+    int verbose = 0;
     char *outfile = NULL;
 
-    while ((c = getopt( argc, argv, "vt:i:s:o:")) != -1 )
+    while ((c = getopt( argc, argv, "vbt:i:s:o:")) != -1 )
         switch (c)
         {
             case 'v': // all voices
@@ -50,6 +51,9 @@ int main(int argc, char** argv)
               outfile = optarg;
               oflag = 1;
               break;
+            case 'b':
+              verbose = 1;
+              break;
             case '?':
               if (optopt == 'i')
                   fprintf(stderr, "Option -%c requires an argument.\n", optopt);
@@ -67,9 +71,13 @@ int main(int argc, char** argv)
     long sample_rate = 44100; /* number of samples per second */
 	int track = 0; /* index of track to play (0 = first) */
 	
+    if (!iflag)
+        sprintf(infile, "test.nsf");
+    if (verbose)
+        fprintf(stderr, "Opening file %s\n", infile);
+	
+    Music_Emu* emu;
 	/* Open music file in new emulator */
-    fprintf(stderr, "opening file\n");
-	Music_Emu* emu;
 	handle_error( gme_open_file( infile, &emu, sample_rate ) );
 	
     /* Get num voices */
@@ -88,44 +96,54 @@ int main(int argc, char** argv)
             t_sec = tinfo->length / 1000;
         else // if the length is not specified
             t_sec = (tlen == 150000) ? T_SEC_DEFAULT : (tlen / 1000);
+        if (verbose)
+            fprintf(stderr, "Track length is %d s\n", t_sec);
     }
     // process each voice if -v is enabled
     for (int vi = 0; vi < num_voices; vi++)
     {
         
         // unsilence tracks. 1 means mute
-        fprintf(stderr, "muting tracks\n");
         #define ALL_VOICES -1
         if ( sflag == 1 ) 
         {
             gme_mute_voices( emu, ALL_VOICES );
             gme_mute_voice( emu, sel_voice, 0 ); 
+            if (verbose)
+                fprintf(stderr, "Unmuted voice %d\n", sel_voice);
         }
         else if ( vflag == 1 ) 
         {
             // unmute only the currently processed voice
             gme_mute_voices( emu, ALL_VOICES );
             gme_mute_voice( emu, vi, 0 );
+            if (verbose)
+                fprintf(stderr, "Unmuted voice %d\n", vi);
         }
 
-        fprintf(stderr, "muted voices\n");
 
         /* Start track */
         handle_error( gme_start_track( emu, track ) );
         
         char fname[80];
-        if ( oflag == 1 )
-            strcpy ( fname, outfile );
+        if ( vflag == 1 )
+            sprintf( fname, "Voice%d.wav", vi );
+        else if ( sflag == 1 )
+        {
+            if ( (oflag == 1) && (strcmp(outfile, "-") != 0))
+                sprintf( fname, "Voice%d.wav", sel_voice);
+            else if ( oflag == 1 )
+                strcpy( fname, outfile );
+        }
         else
         {
-            if ( vflag == 1 )
-                sprintf( fname, "Voice%d.wav", vi );
-            else if ( sflag == 1 )
-                sprintf( fname, "Voice%d.wav", sel_voice);
-            else
+            if ( oflag == 1 )
+                strcpy ( fname, outfile );
+            else    
                 sprintf( fname, "out.wav" );
         }
-        fprintf(stderr, "set output file to %s\n", fname);
+        if (verbose)
+            fprintf(stderr, "Output file is %s\n", fname);
         /* Begin writing to wave file */
         FILE * curfile = wave_open( sample_rate, fname );
         wave_enable_stereo();
