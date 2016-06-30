@@ -2,6 +2,8 @@
 # installed the project so if you're copying these rules you probably don't
 # even need these next two lines if you're building against system-installed
 # gme.
+cmake_minimum_required(VERSION 2.6)
+
 include_directories(${CMAKE_SOURCE_DIR}/gme ${CMAKE_SOURCE_DIR})
 link_directories(${CMAKE_BINARY_DIR}/gme)
 

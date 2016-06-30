@@ -38,12 +38,12 @@ vgm2wav is a part of a larger project that involves analysis of large numbers of
 
 2. [game-music-emu](https://bitbucket.org/mpyne/game-music-emu/wiki/Home) 0.6.0 library (included in this repo for convenience).
 
-## Building
+## Build Instructions
 Clone the repository using
 ```
 git clone https://github.com/weinerjm/vgm2wav.git
 ```
-then `cd vgm2wav`. When you are in the vgm2wav directory, run `cmake .` and finally `make`.
+then `cd vgm2wav`. When you are in the vgm2wav directory, run `cmake src/` and finally `make`.
 `make clean` should remove the build files.
 
 This build has only been tested on Mac OS X 10.11 with CMake 3.5.2 and gcc 5.3.0.
@@ -75,7 +75,7 @@ By default, vgm2wav will try to output the full length of the track. If it is no
 Verbose output is enabled with the `-b` option.
 
 ### Output
-By default, the output is to 44.1 kHz RIFF Wave format. 
+The output is 44.1 kHz RIFF WAVE format. 
 
 ## License
 This software is available under the Lesser GNU Public License v2.1.
