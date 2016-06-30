@@ -74,7 +74,7 @@ int main(int argc, char** argv)
     if (!iflag)
         sprintf(infile, "test.nsf");
     if (verbose)
-        fprintf(stderr, "Opening file %s\n", infile);
+        fprintf(stderr, "Input file : %s\n", infile);
 	
     Music_Emu* emu;
 	/* Open music file in new emulator */
@@ -97,7 +97,7 @@ int main(int argc, char** argv)
         else // if the length is not specified
             t_sec = (tlen == 150000) ? T_SEC_DEFAULT : (tlen / 1000);
         if (verbose)
-            fprintf(stderr, "Track length is %d s\n", t_sec);
+            fprintf(stderr, "Track length : %d s\n", t_sec);
     }
     // process each voice if -v is enabled
     for (int vi = 0; vi < num_voices; vi++)
@@ -121,29 +121,25 @@ int main(int argc, char** argv)
                 fprintf(stderr, "Unmuted voice %d\n", vi);
         }
 
-
         /* Start track */
         handle_error( gme_start_track( emu, track ) );
         
         char fname[80];
         if ( vflag == 1 )
             sprintf( fname, "Voice%d.wav", vi );
-        else if ( sflag == 1 )
+        else if ( oflag == 1 )
+            strcpy( fname, outfile );
+        else // no output set
         {
-            if ( (oflag == 1) && (strcmp(outfile, "-") != 0))
+            if ( sflag == 1)
                 sprintf( fname, "Voice%d.wav", sel_voice);
-            else if ( oflag == 1 )
-                strcpy( fname, outfile );
-        }
-        else
-        {
-            if ( oflag == 1 )
-                strcpy ( fname, outfile );
-            else    
+            else // default    
                 sprintf( fname, "out.wav" );
         }
+
         if (verbose)
-            fprintf(stderr, "Output file is %s\n", fname);
+            fprintf(stderr, "Output file : %s\n", fname);
+        
         /* Begin writing to wave file */
         FILE * curfile = wave_open( sample_rate, fname );
         wave_enable_stereo();

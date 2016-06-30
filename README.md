@@ -16,19 +16,19 @@ vgm2wav is a part of a larger project that involves analysis of large numbers of
 
 1. [CMake](http://cmake.org/) version 2.6 or higher
 
-2. game-music-emu 0.6.0 library (included here).
+2. [game-music-emu](https://bitbucket.org/mpyne/game-music-emu/wiki/Home) 0.6.0 library (included in this repo for convenience).
 
 ## Building
 Clone the repository using
 ```
-git clone ...
+git clone https://github.com/weinerjm/vgm2wav.git
 ```
-Then when you are in the vgm2wav directory, run
+then `cd vgm2wav`. When you are in the vgm2wav directory, run
 ```
 cmake .
 ```
 and finally `make`.
-`make clean` should allow you to start from scratch.
+`make clean` should remove the build files.
 
 This build has only been tested on Mac OS X 10.11 with CMake 3.5.2 and gcc 5.3.0.
 
@@ -50,7 +50,7 @@ To select a single voice and have it exported as `Voice#.wav`, use the `-s [numb
 ```shell
 ./vgm2wav -s 1
 ```
-The voices are zero-indexed. Note that a single voice can be exported to `stdout`. 
+The voice labels are zero-indexed. Note that a single voice can be exported to `stdout`. 
 
 ### Track Length
 By default, vgm2wav will try to output the full length of the track. If it is not able to find track length information (because of the format) then it defaults to 30 seconds. To override this and specify a length of the output, the `-t [seconds]` option can be used.
