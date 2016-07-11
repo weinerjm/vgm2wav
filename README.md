@@ -12,7 +12,7 @@ Convert the packaged `test.nsf` to a 10-second long WAV file:
 ```
 ./vgm2wav -i test.nsf -o out.wav -t 10
 ```
-Isolate the melody:
+Isolate the melody voice:
 ```
 ./vgm2wav -i test.nsf -s 0 -o melody.wav -t 10
 ```
@@ -67,13 +67,16 @@ To select a single voice and have it exported as `Voice#.wav`, use the `-s [numb
 ```
 ./vgm2wav -s 1
 ```
-The voice labels are zero-indexed. Note that a single voice can be exported to `stdout`. 
+The voice labels are zero-indexed. Note that a single voice can be exported to `stdout` in conjunction with the `-o -` option. 
+
+### Tracks
+The default track is track 0. For files (e.g., NES NSF) with multiple tracks, the `-r [track_num]` option will isolate a single track.
 
 ### Track Length
 By default, vgm2wav will try to output the full length of the track. If it is not able to find track length information (because of the format) then it defaults to 30 seconds. To override this and specify a length of the output, the `-t [seconds]` option can be used.
 
 ### Other
-Verbose output is enabled with the `-b` option.
+Verbose output to stderr is enabled with the `-b` option.
 
 ### Output
 The output is 44.1 kHz RIFF WAVE format. 

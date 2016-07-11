@@ -18,7 +18,8 @@ int main(int argc, char** argv)
 {
     // Command-line arguments
     int vflag = 0;
-    char *infile = NULL;
+    //char *infile = NULL;
+    char infile[80];
     int iflag = 0;
     int c;
     int t_sec = 30; // default: 30 seconds of wave
@@ -28,15 +29,17 @@ int main(int argc, char** argv)
     int oflag = 0;
     int verbose = 0;
     char *outfile = NULL;
+    int trflag;
+    int tr_sel;
 
-    while ((c = getopt( argc, argv, "vbt:i:s:o:")) != -1 )
+    while ((c = getopt( argc, argv, "vbt:i:s:o:r:")) != -1 )
         switch (c)
         {
             case 'v': // all voices
               vflag = 1;
               break;
             case 'i': // input file
-              infile = optarg;
+              strcpy(infile, optarg);
               iflag = 1;
               break;
             case 't': // change the time
@@ -54,6 +57,10 @@ int main(int argc, char** argv)
             case 'b':
               verbose = 1;
               break;
+            case 'r':
+              trflag = 1;
+              tr_sel = atoi( optarg );
+              break;
             case '?':
               if (optopt == 'i')
                   fprintf(stderr, "Option -%c requires an argument.\n", optopt);
@@ -69,7 +76,7 @@ int main(int argc, char** argv)
         }
 	
     long sample_rate = 44100; /* number of samples per second */
-	int track = 0; /* index of track to play (0 = first) */
+	int track = ( trflag == 1 ) ? tr_sel : 0; /* index of track to play (0 = first) */
 	
     if (!iflag)
         sprintf(infile, "test.nsf");
