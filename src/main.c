@@ -13,6 +13,7 @@
 #define T_SEC_DEFAULT 30
 
 void handle_error( const char* str );
+void usage( void );
 
 int main(int argc, char** argv)
 {
@@ -31,6 +32,11 @@ int main(int argc, char** argv)
     char *outfile = NULL;
     int trflag;
     int tr_sel;
+
+    if (argc < 2) 
+    {
+        usage();
+    }
 
     while ((c = getopt( argc, argv, "vbt:i:s:o:r:")) != -1 )
         switch (c)
@@ -191,7 +197,14 @@ void handle_error( const char* str )
 {
 	if ( str )
 	{
-		printf( "Error: %s\n", str ); getchar();
+		fprintf(stderr, "Error: %s\n", str ); getchar();
 		exit( EXIT_FAILURE );
 	}
+}
+
+void usage(void)
+{
+    fprintf(stderr, "usage: vgm2wav -i [file] -o [file] [-v] [-r track_num] [-b]\n" );
+    fprintf(stderr, "output supports '-' as filename for stdout\n");
+    exit( EXIT_FAILURE );
 }
