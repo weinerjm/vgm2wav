@@ -1,5 +1,5 @@
 # vgm2wav
-vgm2wav is a simple command-line interface for essential funcitonality of blargg's [game-music-emu](https://bitbucket.org/mpyne/game-music-emu/wiki/Home) library. It builds off of the demo code that is included in game-music-emu.
+vgm2wav is a simple command-line interface for essential functionality of blargg's [game-music-emu](https://bitbucket.org/mpyne/game-music-emu/wiki/Home) library. It builds off of the demo code that is included in game-music-emu.
 
 vgm2wav converts video game music files (e.g., NES NSF or Super Nintendo SPC) to uncompressed WAV format. 
 The conversion is achieved by running a sound emulator and converting the raw resulting stream to an audio file.
