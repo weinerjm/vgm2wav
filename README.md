@@ -34,7 +34,7 @@ vgm2wav is a part of a larger project that involves analysis of large numbers of
 
 ## Requirements
 
-1. [CMake](http://cmake.org/) version 2.6 or higher
+1. [CMake](http://cmake.org/) version 3.14 or higher
 
 2. [game-music-emu](https://bitbucket.org/mpyne/game-music-emu/wiki/Home) 0.6.0 library (included in this repo for convenience).
 

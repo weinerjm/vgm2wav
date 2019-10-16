@@ -12,5 +12,6 @@ gme/*.swp
 *.wav
 *.mp3
 *.mid
-/build*
+build/*
 libgme/*
+_deps/
