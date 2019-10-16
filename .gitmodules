@@ -1,0 +1,3 @@
+[submodule "libgme"]
+	path = libgme
+	url = https://github.com/mcfiredrill/libgme
