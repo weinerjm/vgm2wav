@@ -34,20 +34,23 @@ vgm2wav is a part of a larger project that involves analysis of large numbers of
 
 ## Requirements
 
-1. [CMake](http://cmake.org/) version 2.6 or higher
+1. [CMake](http://cmake.org/) version 3.14 or higher
 
-2. [game-music-emu](https://bitbucket.org/mpyne/game-music-emu/wiki/Home) 0.6.0 library (included in this repo for convenience).
+2. [game-music-emu](https://bitbucket.org/mpyne/game-music-emu/wiki/Home) 0.6.0 library (linked as a submodule).
 
 ## Build Instructions
 Clone the repository using
 ```
 git clone https://github.com/weinerjm/vgm2wav.git
+cd vgm2wav
+git submodule init
+git submodule update
+cmake -S . -B build
+cmake --build build
 ```
-then `cd vgm2wav`. When you are in the vgm2wav directory, run `cmake .` and finally `make`. 
+You can copy the executable from `build/app/vgm2wav` to the location of your choosing (e.g., `/usr/local/bin`). `make install` doesn't work because I don't know how to use new cmake.
 
-`make install` will install the vgm2wav binary in `/usr/local/bin`. `make clean` should remove the build files.
-
-This build has only been tested on Mac OS X 10.11 with CMake 3.5.2 and gcc 5.3.0. Also, only a few NSF and SPC format files have been tested.
+This build has only been tested on Mac OS X 10.14.6 with CMake 3.15.4 and clang 10.0.1. Also, only a few NSF and SPC files have been tested.
 
 ## Usage
 vgm2wav supports several options for file input/output and selecting voices from the source sound file.
