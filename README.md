@@ -48,7 +48,7 @@ git submodule update
 cmake -S . -B build
 cmake --build build
 ```
-You can copy the executable from `app/vgm2wav` to the location of your choosing (e.g., `/usr/local/bin`). `make install` doesn't work because I don't know how to use new cmake.
+You can copy the executable from `build/app/vgm2wav` to the location of your choosing (e.g., `/usr/local/bin`). `make install` doesn't work because I don't know how to use new cmake.
 
 This build has only been tested on Mac OS X 10.14.6 with CMake 3.15.4 and clang 10.0.1. Also, only a few NSF and SPC files have been tested.
 

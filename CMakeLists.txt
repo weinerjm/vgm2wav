@@ -9,8 +9,6 @@ project(vgm2wavProject
     DESCRIPTION "Video game music to WAV"
     LANGUAGES C CXX)
 
-#add_subdirectory(libgme)
-
 # FetchContent added in CMake 3.11, downloads during the configure step
 include(FetchContent)
 # FetchContent_MakeAvailable was not added until CMake 3.14
@@ -35,8 +33,6 @@ if((NOT GME_INCLUDE_DIR) OR (NOT EXISTS ${GME_INCLUDE_DIR}))
 
     # we have a submodule setup for foo, assume it is under external/foo
     # now we need to clone this submodule
-    #execute_process(COMMAND git submodule update --init -- libgme
-    #                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
     # set FOO_INCLUDE_DIR properly
     set(GME_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libgme/gme
@@ -60,5 +56,3 @@ else()
 endif()
 
 add_subdirectory(app)
-
-#install(TARGETS vgm2wav DESTINATION /usr/local/bin)
