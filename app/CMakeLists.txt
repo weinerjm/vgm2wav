@@ -6,5 +6,5 @@ add_executable(vgm2wav wave_writer.c main.c)
 set(GME_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../libgme/gme
         CACHE PATH "gme include directory")
 target_link_libraries(vgm2wav gme)
-target_include_directories(vgm2wav PUBLIC ../libgme)
+target_include_directories(vgm2wav PUBLIC ${libgme_SOURCE_DIR})
 install(FILES vgm2wav DESTINATION /usr/local/bin)

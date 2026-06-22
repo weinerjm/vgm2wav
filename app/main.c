@@ -19,19 +19,18 @@ int main(int argc, char** argv)
 {
     // Command-line arguments
     int vflag = 0;
-    //char *infile = NULL;
-    char infile[80];
+    char infile[4096];
     int iflag = 0;
     int c;
     int t_sec = 30; // default: 30 seconds of wave
-    int tflag;
+    int tflag = 0;
     int sel_voice;
     int sflag = 0;
     int oflag = 0;
     int verbose = 0;
     char *outfile = NULL;
-    int trflag;
-    int tr_sel;
+    int trflag = 0;
+    int tr_sel = 0;
 
     if (argc < 2) 
     {
@@ -137,7 +136,7 @@ int main(int argc, char** argv)
         /* Start track */
         handle_error( gme_start_track( emu, track ) );
         
-        char fname[80];
+        char fname[4096];
         if ( vflag == 1 )
             sprintf( fname, "Voice%d.wav", vi );
         else if ( oflag == 1 )
