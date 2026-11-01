@@ -1,6 +1,6 @@
 /* snes_spc 0.9.0. http://www.slack.net/~ant/ */
 
-#include "wave_writer.h"
+#include "Wave_Writer.h"
 
 #include <assert.h>
 #include <stdlib.h>

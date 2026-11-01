@@ -1,7 +1,7 @@
 /* C example that opens a game music file and records 10 seconds to "out.wav" */
 #include "gme/gme.h"
 
-#include "wave_writer.h" /* wave_ functions for writing sound file */
+#include "Wave_Writer.h" /* wave_ functions for writing sound file */
 
 #include <stdlib.h>
 #include <stdio.h>
